@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Features — MineDime Hosting</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{background-color:#0b0c17;color:#e0e0ff;font-family:'Inter',sans-serif}
+a{transition:.3s ease}a:hover{opacity:.9}
+.card{background:rgba(10,10,30,.75);border:1px solid #7f5af0;border-radius:20px;padding:2rem;transition:transform .4s ease,box-shadow .4s ease}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 25px #7f5af0,0 0 35px rgba(127,90,240,.2)}
+.section-padding{padding-top:6rem;padding-bottom:6rem}
+.section-title{margin-bottom:2rem;font-size:2rem;font-weight:bold;text-align:center}
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.mobile-menu{display:none;position:absolute;top:70px;right:20px;background:rgba(15,15,35,.95);padding:1.2rem;border-radius:15px;border:1px solid #7f5af0;z-index:50}
+.mobile-menu a{display:block;margin:0.5rem 0;color:#e0e0ff;text-align:center;padding:0.5rem;border-radius:10px}
+.mobile-menu a:hover{background:rgba(127,90,240,.2)}
+</style>
+</head>
+<body class="antialiased">
+
+<header class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative z-20">
+<a href="index.html" class="flex items-center gap-3">
+<img src="logo.png" class="w-14 h-14 object-contain rounded-lg" alt="MineDime Logo">
+<span class="text-2xl font-extrabold text-white">MineDime Hosting</span>
+</a>
+<nav class="hidden md:flex gap-6 items-center text-sm">
+<a href="products.html" class="hover:underline">Products</a>
+<a href="pricing.html" class="hover:underline">Pricing</a>
+<a href="features.html" class="hover:underline">Features</a>
+<a href="support.html" class="hover:underline">Support</a>
+<a href="#" class="px-4 py-2 bg-indigo-500 rounded text-white">Client Area</a>
+</nav>
+<button id="menu-btn" class="md:hidden px-3 py-2 bg-slate-800 rounded-lg">Menu</button>
+<div id="mobile-menu" class="mobile-menu">
+<a href="products.html">Products</a>
+<a href="pricing.html">Pricing</a>
+<a href="features.html">Features</a>
+<a href="support.html">Support</a>
+<a href="#">Client Area</a>
+</div>
+</header>
+
+<main class="max-w-6xl mx-auto p-6 section-padding fade-up">
+<h1 class="text-4xl font-extrabold mb-8 text-center">Features</h1>
+
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">SSD NVMe Storage</h3>
+    <p class="text-slate-400">Blazing-fast NVMe storage for your servers and bots.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">DDoS Protection</h3>
+    <p class="text-slate-400">Enterprise-level protection to keep your server online 24/7.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Automated Backups</h3>
+    <p class="text-slate-400">Daily or hourly backups depending on your plan.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Priority Support</h3>
+    <p class="text-slate-400">Fast Discord & email support for priority customers.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Plugin Installer</h3>
+    <p class="text-slate-400">One-click plugin installer for Minecraft servers.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Server Splitter</h3>
+    <p class="text-slate-400">Split your server resources to run multiple instances efficiently.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Unlimited Slots</h3>
+    <p class="text-slate-400">Allow as many players as your plan can handle without limits.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Auto Updates</h3>
+    <p class="text-slate-400">Keep your server and plugins always updated automatically.</p>
+  </div>
+  <div class="card fade-up">
+    <h3 class="font-semibold text-lg mb-2">Control Panel Access</h3>
+    <p class="text-slate-400">Easy-to-use panel to manage your servers without hassle.</p>
+  </div>
+</div>
+</main>
+
+<footer class="border-t border-slate-800 mt-12 py-6 text-slate-400 text-sm">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6 items-center">
+<div><strong>MineDime Hosting</strong></div>
+<div>Support: <a href="mailto:support@minedime.org" class="underline">support@minedime.org</a></div>
+<div>© MineDime Hosting — All rights reserved.</div>
+</div>
+</footer>
+
+<script>
+// Fade-up animation
+const faders=document.querySelectorAll('.fade-up');
+const appearOptions={threshold:.2,rootMargin:"0px 0px -50px 0px"};
+const appearOnScroll=new IntersectionObserver((entries,observer)=>{
+entries.forEach(entry=>{
+if(!entry.isIntersecting)return;
+entry.target.classList.add('visible');
+observer.unobserve(entry.target)
+})
+},appearOptions);
+faders.forEach(fader=>appearOnScroll.observe(fader));
+
+// Mobile menu toggle
+const menuBtn=document.getElementById('menu-btn');
+const mobileMenu=document.getElementById('mobile-menu');
+menuBtn.addEventListener('click',()=>{
+mobileMenu.style.display=mobileMenu.style.display==='block'?'none':'block';
+});
+</script>
+
+</body>
+</html>
